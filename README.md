@@ -1,52 +1,63 @@
-# Implementation of Multivariate Linear Regression
+![image](https://github.com/user-attachments/assets/7c1dc29d-447a-4245-9520-d6f02f51f6ce)# Implementation of Multivariate Linear Regression
 ## Aim
 To write a python program to implement multivariate linear regression and predict the output.
 ## Equipment’s required:
 1.	Hardware – PCs
 2.	Anaconda – Python 3.7 Installation / Moodle-Code Runner
 ## Algorithm:
-1.Get the independent variable X and dependent variable Y.
+
+## Step 1:
+Import the required libraries: pandas for data manipulation and linear_model from sklearn for regression.
 <br>
-2.Calculate the mean of the X -values and the mean of the Y -values.
+
+## Step 2:
+Load the dataset using pd.read_csv() and store it in a DataFrame.
 <br>
-3.Find the slope m of the line of best fit using the formula. 
-![image](https://github.com/user-attachments/assets/1f45b537-a8d9-4559-8798-e2f451e9497e)
+
+## Step 3:
+Separate the features (independent variables) and the target (dependent variable):
 <br>
-4.Compute the y -intercept of the line by using the formula:
-![image](https://github.com/user-attachments/assets/de13ee75-ba6d-459b-acea-79657d3bd610)
+-Assign the relevant columns to X (features).
 <br>
-5.Use the slope m and the y -intercept to form the equation of the line.
+-Assign the target column to y (output).
 <br>
-6.Obtain the straight line equation Y=mX+b and plot the scatterplot.
+
+## Step 4:
+Create a linear regression model using linear_model.LinearRegression() and fit it to the data using regr.fit(X, y).
 <br>
+
+## Step 5:
+Print the regression coefficients (regr.coef_) and intercept (regr.intercept_).
+<br>
+
+## Step 6:
+Use the trained model to make predictions using regr.predict() with the given input values.
+<br>
+
+## Step 7:
+Display the predicted output.
+<br>
+
 ## Program:
 ```
-import numpy as np 
-import matplotlib.pyplot as plt
-x = np.array([0,1,2,3,4,5,6,7,8,9])
-y = np.array([1,3,2,5,7,8,8,9,10,12])
-plt.scatter(x,y)
-plt.show()
-xmean = np.mean(x)
-ymean = np.mean(y)
-num=0
-den=0
-for i in range(len(x)):
-    num+=(x[i]-xmean)*(y[i]-ymean)
-    den+=(x[i]-xmean)**2
-m = num/den
-b = ymean - m*xmean
-print(m,b)
-ypred = m*x+b
-print(ypred)
-plt.scatter(x,y,color='Red')
-plt.plot(x,ypred,color='Blue')
-plt.show()
+
+import pandas as pd
+from sklearn import linear_model
+
+df = pd.read_csv("carsemission.csv")
+X = df[['Weight', 'Volume']]
+y = df['CO2']
+
+regr = linear_model.LinearRegression()
+regr.fit(X, y)
+print('Coefficients:', regr.coef_)
+print('Intercept:',regr.intercept_)
+
+predictedCO2 = regr.predict([[3300, 1300]])
+print('Predicted CO2 for the corresponding weight and volume',predictedCO2)
 ```
 ## Output:
-
-![Screenshot 2025-05-21 080409](https://github.com/user-attachments/assets/74e39ed1-2056-49aa-9136-2e508f1efdc5)
-![image](https://github.com/user-attachments/assets/566450ce-103f-4025-92c5-b1f59b2fa5a3)
+![image](https://github.com/user-attachments/assets/519db58c-0df7-4439-8304-603de493db86)
 
 ## Result
 Thus the multivariate linear regression is implemented and predicted the output using python program.
